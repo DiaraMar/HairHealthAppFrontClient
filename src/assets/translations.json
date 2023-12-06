@@ -1,0 +1,19 @@
+{
+    "home": {
+      "en": "Home",
+      "fr": "Accueil"
+    },
+    "connections": {
+      "en": "Connections",
+      "fr": "Connexions"
+    },
+    "dashboard": {
+      "en": "Dashboard",
+      "fr": "Tableau de bord"
+    },
+    "account": {
+      "en": "Account",
+      "fr": "Compte"
+    }
+  }
+  

@@ -1,0 +1,36 @@
+<div class="container" id="container" #container>
+  <div class="form-container sign-up-container">
+    <form (ngSubmit)="onSubmit(signUpForm, 'signUp')" #signUpForm="ngForm">
+      <h1>Create Account</h1>
+      <input type="text" placeholder="firstname" [(ngModel)]="signUpFormModel.firstname" name="firstname" required pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$" />
+      <input type="text" placeholder="Last Name" [(ngModel)]="signUpFormModel.lastname" name="lastname" required pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$"/>
+      <input type="email" placeholder="Email" [(ngModel)]="signUpFormModel.email" name="email"  required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"/>
+      <input type="password" placeholder="Password" [(ngModel)]="signUpFormModel.password" name="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" />
+      <input type="text" placeholder="Phone Number" [(ngModel)]="signUpFormModel.phoneNumber" name="phoneNumber" pattern="^\+\d{1,4}\s?\d{1,14}$" />
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+  <div class="form-container sign-in-container">
+    <form (ngSubmit)="onSubmit(signInForm, 'signIn')" #signInForm="ngForm">
+      <h1>Sign in</h1>
+      <input type="email" placeholder="Email" [(ngModel)]="signInFormModel.email" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" />
+      <input type="password" placeholder="Password" [(ngModel)]="signInFormModel.password" name="password" required />
+      <a href="#">Forgot your password?</a>
+      <button type="submit">Sign In</button>
+    </form>
+  </div>
+  <div class="overlay-container display-none">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1 class="display-none">Welcome Back!</h1>
+        <p class="display-none" >To keep connected with us, please login with your personal info</p>
+        <button class="ghost" id="signIn" (click)="showSignInForm()">Sign In</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1 class="" >Hello, Friend!</h1>
+        <p class="">Enter your personal details and start your journey with us</p>
+        <button class="ghost" id="signUp" (click)="showSignUpForm()">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>

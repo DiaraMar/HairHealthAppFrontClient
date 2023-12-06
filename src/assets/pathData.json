@@ -1,0 +1,8 @@
+{
+    "home": "/home",
+    "auth": "/auth",
+    "dashboard": "/dashboard",
+    "adminDashboard": "/admin-dashboard",
+    "profile": "/profile"
+  }
+  
