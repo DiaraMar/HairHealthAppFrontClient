@@ -6,7 +6,20 @@
   grid-row-gap: 0px;
   height: 3*75vh;
   padding: 1vh;
+  overflow: hidden; /* No scroll */
+
 }
+
+.sec {
+  display: flex;
+  word-wrap: break-word;
+  /* Permet à un mot long de se casser et d'être contenu dans la div */
+  white-space: normal;
+  /* Empêche le débordement horizontal du texte */
+  padding: 20%;
+  justify-content: center;
+}
+
 
 .div1 {
   grid-area: 1 / 1 / 6 / 3;
@@ -17,6 +30,7 @@
 
 .div2 {
   grid-area: 1 / 3 / 6 / 5;
+  display: flex;
 }
 
 .div3 {
@@ -31,14 +45,9 @@
 }
 
 
-.sec {
-  display: flex;
-  word-wrap: break-word;
-  /* Permet à un mot long de se casser et d'être contenu dans la div */
-  white-space: normal;
-  /* Empêche le débordement horizontal du texte */
-  padding: 20%;
-  justify-content: center;
+img {
+  height: auto;
+  max-width: 100%;
 }
 
 .center-w {
@@ -51,10 +60,13 @@
   gap: 2.5vh;
 }
 
-.btn-square {
+
+button{
+  width: 15vw;
   border-radius: 0;
-  /* Supprime la rondeur des coins */
 }
+
+
 
 /********** div1*********/
 
@@ -66,13 +78,15 @@
   z-index: -1;
   /* Place l'image en arrière-plan du contenu */
   width: 100px;
-  /* Ajuste la largeur de l'image selon tes besoins */
   height: auto;
   /* Pour conserver les proportions de l'image */
-  /* Autres styles selon tes besoins */
 }
 
 /********** div2*********/
+
+.div2 img{
+  width: 100%; 
+}
 .div2 h2 {
   display: none
 }
@@ -89,7 +103,6 @@
   /* Ajuste la largeur de l'image selon tes besoins */
   height: auto;
   /* Pour conserver les proportions de l'image */
-  /* Autres styles selon tes besoins */
 }
 
 /********** div4*********/
@@ -171,9 +184,5 @@
     left: 50% -30vw;
   }
 
-  .div3 .gif {
-    width: 100%;
-    height: 90%;
-  }
   
 }
