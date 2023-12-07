@@ -5,7 +5,6 @@
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   height: 3*75vh;
-  padding: 1vh;
   overflow: hidden; /* No scroll */
 
 }
@@ -110,9 +109,11 @@ button{
 .div4 {
   background-color: black;
   color: white;
+  font-size: 10em;
 }
 
 .div4 button {
+
   background-color: white;
 }
 

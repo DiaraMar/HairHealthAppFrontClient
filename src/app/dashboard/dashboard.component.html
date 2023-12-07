@@ -7,70 +7,54 @@
       </div>
 
       <div *ngIf="selectedRoutine">
-        <h2>{{ selectedRoutine.title }}</h2>
-        <p>{{ selectedRoutine.description }}</p>
-        <ul>
-          <li *ngFor="let stage of selectedRoutine.stages">
-            {{ stage.title }} - {{ stage.description }}
-          </li>
-        </ul>
-        <p *ngIf="selectedRoutine.comments.length > 0">Comments:</p>
-        <ul *ngFor="let comment of selectedRoutine.comments">
-          <li>{{ comment.content }}</li>
-        </ul>
 
-
-
-        <!-- ********************************** form ********************************** -->
-        <div class="row">
-          {{selectedRoutine.createdOn}}
+        <div class="row justify-content-right">
+          Créer le {{selectedRoutine.createdOn | date: 'dd/MM/yyyy' }}
         </div>
-
-        <form (ngSubmit)="onSubmit(routine, 'routine')" #routine="ngForm">
-          <div class="row">
-            <div class="col-md-6">
-              <input class="input-minimalist" name="title" type="text" [(ngModel)]="updatedRoutineModel.title"
-                placeholder="Enter your title" value={{selectedRoutine.title}} required
-                pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
+        <div class="row">
+          <form (ngSubmit)="onSubmit(routine, 'routine')" #routine="ngForm">
+            <div class="row">
+              <div>
+                <input class="input-minimalist" name="title" type="text" [(ngModel)]="updatedRoutineModel.title"
+                  placeholder="Enter your title" value={{selectedRoutine.title}} required
+                  pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
+              </div>
             </div>
-          </div>
 
-          {{selectedRoutine.description}} 
-          <div class="row">
-            <div class="col-md-6">
-              <input class="input-minimalist" name="description" type="text" [(ngModel)]="updatedRoutineModel.description"
-                placeholder="Enter your description" value={{selectedRoutine.description}} required
-                pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
+            {{selectedRoutine.description}}
+            <div class="row">
+              <div>
+                <input class="input-minimalist" name="description" type="text"
+                  [(ngModel)]="updatedRoutineModel.description" placeholder="Enter your description"
+                  value={{selectedRoutine.description}} required pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
+              </div>
             </div>
-          </div>
 
             <div class="input-minimalist" *ngFor="let stage of selectedRoutine.stages">
 
               <div>
                 STEP {{ stage.title }}
                 <div class="row">
-                  <div class="col-md-6">
-                    <input class="input-minimalist" name="stageTitle" type="text"
-                      placeholder="Enter your description" value={{stage.title}} required
-                      pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
+                  <div>
+                    <input class="input-minimalist" name="stageTitle" type="text" placeholder="Enter your description"
+                      value={{stage.title}} required pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
                   </div>
                 </div>
                 {{ stage.description }}
                 <div class="row">
-                  <div class="col-md-6">
+                  <div>
                     <input class="input-minimalist" name="stageDescription" type="text"
                       placeholder="Enter your description" value={{stage.description}} required
                       pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
                   </div>
                 </div>
               </div>
-     
-            </div >
-        </form>
 
+            </div>
+          </form>
 
+        </div>
       </div>
-
     </div>
 
     <div *ngIf="selectedMenuItem === 'Diagnostic' ">
@@ -86,35 +70,42 @@
 
     </div>
 
-    <div *ngIf="selectedMenuItem === 'HairMap' " class="img-container" >
+    <div *ngIf="selectedMenuItem === 'HairMap' " class="img-container">
       <div class="image-container">
-        <img [src]="imageToShow" class="image1" alt="Image" [@fadeInOut]>
+        <img [src]="imageToShow" class="img" alt="Coming soon image, advertisinf futur features" [@fadeInOut]>
       </div>
     </div>
   </div>
 
-  <div class="menu">
-    <div (click)="selectMenuItem('Routines')" [ngClass]="{ 'selected': selectedMenuItem === 'Routines' }">Routines</div>
-    <div (click)="selectMenuItem('Diagnostic')" [ngClass]="{ 'selected': selectedMenuItem === 'Diagnostic' }">Diagnostic
+  <div class="right-panel">
+
+    <div class="menu">
+      <div (click)="selectMenuItem('Routines')" [ngClass]="{ 'selected': selectedMenuItem === 'Routines' }">Routines
+      </div>
+      <div (click)="selectMenuItem('Diagnostic')" [ngClass]="{ 'selected': selectedMenuItem === 'Diagnostic' }">
+        Diagnostic
+      </div>
+      <div (click)="selectMenuItem('HairMap')" [ngClass]="{ 'selected': selectedMenuItem === 'HairMap' }">Hair Map</div>
     </div>
-    <div (click)="selectMenuItem('HairMap')" [ngClass]="{ 'selected': selectedMenuItem === 'HairMap' }">Hair Map</div>
-  </div>
+    <div class="elements-">
+      <div class="elements" *ngIf="selectedMenuItem === 'Routines' ">
+        <div *ngFor="let routine of routines" (click)="selectRoutine(routine)">
+          <div>{{ routine.title }} </div>
+        </div>
+      </div>
 
-  <div class="elements" *ngIf="selectedMenuItem === 'Routines' ">
-    <div *ngFor="let routine of routines" (click)="selectRoutine(routine)">
-      <div>{{ routine.title }} </div>
+
+      <div class="elements" *ngIf="selectedMenuItem === 'Diagnostic' ">
+        <div *ngFor="let diagnostic of diagnostics" (click)="selectDiagnostic(diagnostic)">
+          <div>{{ diagnostic.title }} </div>
+        </div>
+      </div>
+
+      <div class="elements" *ngIf="selectedMenuItem === 'HairMap' ">
+        <div> test</div>
+      </div>
+
     </div>
   </div>
-
-
-  <div class="elements" *ngIf="selectedMenuItem === 'Diagnostic' ">
-    <div *ngFor="let diagnostic of diagnostics" (click)="selectDiagnostic(diagnostic)">
-      <div>{{ diagnostic.title }} </div>
-    </div>
-  </div>
-
-  <div class="elements" *ngIf="selectedMenuItem === 'HairMap' ">
-    <div> test</div>
-  </div>
-
+  
 </div>

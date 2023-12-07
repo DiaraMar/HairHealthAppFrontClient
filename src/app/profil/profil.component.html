@@ -1,72 +1,72 @@
 <div class="container-xl px-4 mt-4 container">
-    <!-- Account page navigation to do-->
     <nav class="nav nav-borders">
         <a class="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details"
-            target="__blank">Profile</a>
-        <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-billing-page"
+            target="__blank">Profil</a>
+       <!--<a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-billing-page"
             target="__blank">Billing</a>
         <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page"
             target="__blank">Security</a>
+            --> 
     </nav>
     <hr class="mt-0 mb-4">
-    <div class="row">
+
+<div class="flex">
+    <div class="row div1">
         <div class="col-xl-12">
-            <!-- Account details card-->
             <div class="card mb-4">
-                <div class="card-header">{{'Account details'}}</div>
+                <div class="card-header">{{'Détails du compte'}}</div>
                 <div class="card-body">
                     <form (ngSubmit)="onSubmit(generalAccount, 'generalAccount')" #generalAccount="ngForm">
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <input class="form-control" name="firstname" type="text"
+                        <div class="row gx-3">
+                            <div class="col-md-12 mb-2">
+                                <input class="form-control mb-2" name="firstname" type="text"
                                     [(ngModel)]="profilFormModel.firstname" placeholder="Enter your first name"
                                     value={{profil.firstname}} required
                                     pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
                             </div>
-                            <div class="col-md-6">
-                                <input class="form-control" name="lastname" type="text"
+                            <div class="col-md-12 mb-2">
+                                <input class="form-control mb-2" name="lastname" type="text"
                                     [(ngModel)]="profilFormModel.lastname" placeholder="Enter your last name"
                                     value={{profil.lastname}} required
                                     pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
                             </div>
                         </div>
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <input class="form-control" name="email" type="email"
+                        <div class="row gx-3 mb-2">
+                            <div class="col-md-12 mb-2">
+                                <input class="form-control mb-2" name="email" type="email"
                                     [(ngModel)]="profilFormModel.email" name="email" placeholder="Email"
                                     value={{profil.email}} required
                                     pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
                             </div>
-                            <div class="col-md-6">
-                                <input class="form-control" name="phoneNumber" type="tel"
+                            <div class="col-md-12 mb-2">
+                                <input class="form-control mb-2" name="phoneNumber" type="tel"
                                     [(ngModel)]="profilFormModel.phoneNumber" placeholder="Enter your phone number"
                                     value={{profil.phoneNumber}} pattern="^\+\d{1,4}\s?\d{1,14}$">
                             </div>
                         </div>
                         <div class="row gx-3 mb-3">
-                            <div class="col-md-2">
-                                <input mdbCheckbox class="form-check-input" type="checkbox" [(ngModel)]="settingsFormModel.sms" id="sms" name="sms" />
+                            <div class="col-md-4 mb-3">
+                                <input mdbCheckbox class="form-check-input me-3" type="checkbox" [(ngModel)]="settingsFormModel.sms" id="sms" name="sms" />
                                 <label class="form-check-label" for="sms">{{'Receive SMS'}}</label>
                               </div>
-                              <div class="col-md-2">
-                                <input mdbCheckbox class="form-check-input" type="checkbox" [(ngModel)]="settingsFormModel.newsletter" id="newsletter" name="newsletter" />
+                              <div class="col-md-4 mb-3">
+                                <input mdbCheckbox class="form-check-input mb-3 me-3" type="checkbox" [(ngModel)]="settingsFormModel.newsletter" id="newsletter" name="newsletter" />
                                 <label class="form-check-label" for="newsletter">{{'Subscribe Newsletter'}}</label>
                               </div>                              
                         </div>
-                        <button class="btn btn-primary" type="submit">{{'Save changes'}}</button>
+                        <button class="btn btn-dark" type="submit">{{'Save changes'}}</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row div2">
         <div class="col-xl-12">
-            <!-- Account details card-->
             <div class="card mb-4">
                 <div class="card-header">{{'Mot de passe'}}</div>
                 <div class="card-body">
                     <form (ngSubmit)="onSubmit(credential, 'credentials')" #credential="ngForm">
-                        <div class="row gx-3 mb-3">
+                        <div class="row gx-3 mb-3 ">
                             <div class="col-md-12">
                                 <input class="form-control" type="password" placeholder="Password" [(ngModel)]="passwordFormModel.oldPassword" name="oldPassword" required  />
                             </div>
@@ -76,15 +76,19 @@
                                 <input class="form-control" type="password" placeholder="New password" [(ngModel)]="passwordFormModel.newPassword" name="newPassword" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" />
                             </div>
                         </div>
-                        <div class="row gx-3 mb-3">
+                        <div class="row gx-3 mb-3 center">
                             <div class="col-md-12">
                                 <input class="form-control" type="password" placeholder="Confirmation new password" [(ngModel)]="passwordConfirmation" name="passwordConfirmation" required />
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit" [disabled]="passwordFormModel.newPassword !== passwordConfirmation">{{'Save changes'}}</button>
+                        <button class="btn btn-dark" type="submit" [disabled]="passwordFormModel.newPassword !== passwordConfirmation">{{'Save changes'}}</button>
                     </form>
                 </div>
             </div>
         </div>
+    
+    
     </div>
+
+</div>
 </div>

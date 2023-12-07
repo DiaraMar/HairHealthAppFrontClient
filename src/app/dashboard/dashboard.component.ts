@@ -94,11 +94,26 @@ initDiagnostics(){
   }
 
 selectRoutine(selected :any ){
+  console.log("select routine");
+  console.log(selected);
   this.selectedRoutine = selected;
+  this.updatedRoutineModel.id = selected.id;
+  this.updatedRoutineModel.title = selected.title;
+  this.updatedRoutineModel.description = selected.description;
+  this.updatedRoutineModel.createdOn = selected.createdOn;
+  this.updatedRoutineModel.createdBy = selected.createdBy;
+
+  this.updatedStagesModel = selected.stages;
+  console.log("updated routine");
+  console.log(this.updatedRoutineModel);
+  console.log("updated stages");
+  console.log(this.updatedStagesModel);
+  
 }
 
 selectDiagnostic(selected :any ){
   this.selectedDiagnostic = selected;
+
 }
 
 
