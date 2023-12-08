@@ -32,4 +32,16 @@ export class RoutineService {
     return this.http.get(authenticateUrl,{headers});
   }
 
+  updateRoutine(routine : any, stage: any){
+    const authenticateUrl = `${this.baseUrl}/routines`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+
+    });
+    return this.http.get(authenticateUrl,{headers});
+  }
+
+
 }

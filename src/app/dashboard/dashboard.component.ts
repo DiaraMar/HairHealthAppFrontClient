@@ -25,6 +25,7 @@ export class DashboardComponent {
   selectedMenuItem : string = "Routines";
   routines : any [] = [];
   diagnostics : any [] = [];
+  stages : any [] = [];
   selectedRoutine: any;
   updatedRoutineModel = {
     id:'',
@@ -37,6 +38,7 @@ export class DashboardComponent {
   selectedDiagnostic: any;
   currentImage = 0;
   imageToShow = '../../assets/Maquette application (512 x 768 px) (1).png';
+  index = 0;
 
 
   
@@ -49,11 +51,16 @@ export class DashboardComponent {
 
   }
 
+
+  ngOnChanges(changes: any) {  }
+
   initRoutines(){
     this.routineService.getRoutines().subscribe(
       (response : any) => {
         if (response) {
           this.routines = response;
+          this.stages = response.stages;
+          console.log(this.routines);
         }
       },
       (error) => {
@@ -108,7 +115,6 @@ selectRoutine(selected :any ){
   console.log(this.updatedRoutineModel);
   console.log("updated stages");
   console.log(this.updatedStagesModel);
-  
 }
 
 selectDiagnostic(selected :any ){
@@ -118,11 +124,42 @@ selectDiagnostic(selected :any ){
 
 
 onSubmit(ngForm : NgForm, action : 'routine'){
+  console.log("retrieve", ngForm.value);
+  console.log("updated routine");
+  console.log(this.updatedRoutineModel);
+  console.log("updated stages");
+  console.log(this.updatedStagesModel);
+  console.log("hereeeeeeeeeeee");
+
+console.log(  this.selectedRoutine.stages[0]  )
   if(ngForm.valid){
 
     }
 
 }
+
+updateStageTitle(stageIndex: number, newTitle: string) {
+  this.selectedRoutine.stages[stageIndex].title = newTitle;
+  // Mettre à jour updatedStagesModel si nécessaire
+}
+
+updateStageDescription(stageIndex: number, newDescription: string) {
+  this.selectedRoutine.stages[stageIndex].description = newDescription;
+  // Mettre à jour updatedStagesModel si nécessaire
+}
+
+saveRoutine() {
+  // Utilise le service pour sauvegarder les modifications
+  this.routineService.updateRoutine(this.updatedRoutineModel, this.updatedStagesModel).subscribe(
+    (response) => {
+      // Gérer la réponse en cas de succès
+    },
+    (error) => {
+      // Gérer les erreurs éventuelles
+    }
+  );
+}
+
 
 toggleImage() {
   if (this.imageToShow === '../../assets/Maquette application (512 x 768 px) (1).png') {
