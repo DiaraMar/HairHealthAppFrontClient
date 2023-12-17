@@ -12,10 +12,10 @@ import { GoalComponent } from './goal/goal.component';
 import { AdviceComponent } from './advice/advice.component';
 
 const dashboardRoutes: Routes = [
-  { path: 'routines', component: RoutineComponent }, // Define your RoutineComponent here
-  { path: 'diagnostics', component: DiagnosticComponent }, // Define your DiagnosticComponent here
-  { path: 'goals', component: GoalComponent }, // Define your ObjectifsComponent here
-  { path: 'advices', component: AdviceComponent }, // Define your ConseilsComponent here
+  { path: 'routines', component: RoutineComponent }, 
+  { path: 'diagnostics', component: DiagnosticComponent },
+  { path: 'goals', component: GoalComponent }, 
+  { path: 'advices', component: AdviceComponent }, 
 ];
 
 

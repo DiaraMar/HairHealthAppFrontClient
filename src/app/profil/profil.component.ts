@@ -139,8 +139,6 @@ export class ProfilComponent implements OnInit {
   }
 
   updatePassword(){
-    console.log("ree");
-
     this.profilService.updateCredentials(this.passwordFormModel).subscribe(
       (response : any)=>{
         sessionStorage.setItem('token', response);

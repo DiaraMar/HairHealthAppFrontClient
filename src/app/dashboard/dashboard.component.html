@@ -47,13 +47,13 @@
                 <!-- stages -->
                 <div class="input-minimalist" *ngFor="let stage of selectedRoutine.stages; let i = index">
 
-                  <div class="mb-4">
-                    <div class="row">
+                  <div class="mb-5">
+                    <div class="row mb-4">
                       <div class="step-container">
-                        <span class="">STEP <input class="input-minimalist " name="stageTitle_{{i}}" type="text"
+                         <input class="input-minimalist title" name="stageTitle_{{i}}" type="text"
                             placeholder="Enter your description" [(ngModel)]="selectedRoutine.stages[i].title"
                             (ngModelChange)="updateStageTitle(i, $event)" required
-                            pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$"></span>
+                            pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
 
                       </div>
                     </div>

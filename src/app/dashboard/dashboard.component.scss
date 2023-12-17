@@ -102,8 +102,12 @@ input {
 
 .step-container input{
   justify-content: left;
-  border: #5d4a1f 1px solid;
+  border-bottom: #5d4a1f 1px solid;
+  font-size: 2em;
+  font-weight: 600;
 }
+
+
 
 
 
@@ -124,7 +128,6 @@ input {
   overflow: auto;
 }
 .element-container{
-  border: 1px solid black;
   width: 100%;
 }
 
@@ -188,6 +191,23 @@ flex-direction: column;
       height: 50%;
     }
 
+    .elements{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      width: 100%;
+
+      overflow-x: hidden;
+
+    }
+
+    .elements div{
+      margin: 0%; 
+      padding: 0px;  
+      width: 150px;
+      height: 50px;
+
+    }
     .img-container {
       display: flex;
       justify-content: center;
