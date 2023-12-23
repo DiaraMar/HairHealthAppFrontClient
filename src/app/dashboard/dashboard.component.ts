@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RoutineService } from '../routine.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -44,7 +45,7 @@ export class DashboardComponent {
   
 
 
-  constructor(private routineService : RoutineService){}
+  constructor(private routineService : RoutineService, private router : Router){}
 
   ngOnInit() {
     this.initRoutines();
@@ -82,7 +83,12 @@ initDiagnostics(){
   ); 
 }
 
-  selectMenuItem(selected : 'Routines' | 'Diagnostic' | 'Goals' | 'HairMap' ){
+  selectMenuItem(selected : 'Home'| 'Routines' | 'Diagnostic' | 'Goals' | 'HairMap' ){
+
+    if (selected === 'Home') {
+      this.selectedMenuItem = selected;
+      this.router.navigateByUrl('/home');
+        }
     if (selected === 'Routines') {
       this.selectedMenuItem = selected;
     }

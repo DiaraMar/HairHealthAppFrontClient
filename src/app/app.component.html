@@ -1,7 +1,7 @@
 <div class="site-wrapper">
     <div class="site-wrapper-inner">
         <div class="container-fluid">
-            <app-navbar class="navbar"></app-navbar>
+            <app-navbar [ngClass]="{ 'nav-off': currentUrl === '/dashboard' }" ></app-navbar>
             <div class="content">
                 <router-outlet></router-outlet>
             </div>

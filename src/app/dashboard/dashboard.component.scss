@@ -1,62 +1,88 @@
 .container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(7, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  height: 75vh;
-  width: 100%;
-}
-
-.left-panel {
-  grid-area: 1 / 1 / 6 / 5;
-  padding: 0px 50px 5px 50px;
-  text-align: center;
-  justify-content: center;
-  border: 1PX solid black;
-}
-
-.right-panel {
-  grid-area: 1 / 5 / 6 / 7;
-  border: solid black 1px;
-  padding: 10px 0px ;
-
-}
-
-.menu {
-  display: flex;
-  justify-content: space-around;
-  padding: 5px;
-}
-
-
-.justify-content-right {
-  justify-content: right;
-}
-
-.h-full{
   height: 100%;
+  width: 100%;
+  padding: 0;
 }
 
+.div1 {
+  grid-area: 1 / 1 / 8 / 4;
+  background-color: red;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(12, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  }
+  
+  
+  .display-content { 
+     grid-area: 1 / 1 / 13 / 2; background-color: purple; 
+    overflow-y: scroll;
+    overflow-x: hidden;}
 
-.content-center-center1 {
+.div2 {
+  grid-area: 1 / 4 / 2 / 6;
+  background-color: ghostwhite;
+  white-space: nowrap;
+  /* Empêche le retour à la ligne du texte */
+  overflow-x: scroll;
+  overflow-y: hidden;
   display: flex;
-  justify-content: center; /* Centre horizontalement */
-  align-items: center; /* Centre verticalement */
-  height: 100%; 
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.div3 {
+  grid-area: 2 / 4 / 8 / 6;
+  background-color: blue;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+
 }
 
 
-.scroll{
-  position: relative;
-  height: 80%;
-  overflow-y: auto;
-  overflow-x: hidden; 
+.div1,
+.div2,
+.div3 {
+  padding: 20px;
 }
 
-/*************  Scrollbar  ***************/
+
+/*************** div2 ***************/
+
+.div2 div {
+  cursor: pointer;
+}
+
+.selected {
+  border-bottom: 2px solid black;
+  opacity: 1;
+}
+
+/*************** div3 ***************/
+
+.div3 .item-of-list{
+  border: black 1px solid;
+  width: 100%;
+  height: 150px;
+  flex: none; 
+  margin-bottom: 10px;
+}
+
+
+/*************** SCROLL ***************/
+
 ::-webkit-scrollbar {
-  width: 20px;
+  width: 1px;
 }
 
 ::-webkit-scrollbar-track {
@@ -66,7 +92,7 @@
 ::-webkit-scrollbar-thumb {
   background-color: #d6dee1;
   border-radius: 20px;
-  border: 6px solid transparent;
+  border: 4px solid transparent;
   background-clip: content-box;
 }
 
@@ -74,74 +100,37 @@
   background-color: #a8bbbf;
 }
 
-/******* Left panel **********/
-.left-panel div {
-  text-align: center;
-}
+
+// Modal
 
 
 
 
-/******* Menu **********/
+// End modal
 
-.menu div {
-  padding: 5px 10px;
-  cursor: pointer;
-}
+@media screen and (max-width: 1360px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(9, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
 
-.selected {
-  border-bottom: 2px solid black;
-}
+  .div1 {
+    grid-area: 1 / 1 / 8 / 2;
+  }
 
-/**** Routine ****/
+  .div2 {
+    grid-area: 9 / 1 / 10 / 2;
+  }
 
-.input-minimalist,
-input {
-  all: inherit;
-}
-
-.step-container input{
-  justify-content: left;
-  border-bottom: #5d4a1f 1px solid;
-  font-size: 2em;
-  font-weight: 600;
-}
-
-
-
-
-
-.scroll {
-  position : relative;
-  height: 60vh;
-  overflow: auto;
-}
-
-
-/******* Elements **********/
-.elements- {
-  position: relative;
-  padding: 10px 10px;
-  margin: 5px 0px;
-  height: 65vh;
-  width: 100%;
-  overflow: auto;
-}
-.element-container{
-  width: 100%;
-}
-
-.item{
-background-color: black;  
-color: white;
-width: 100%;
-height: 9vh;
-display: flex;
-align-items: center;
-justify-content: center; 
-flex-direction: column;
-}
-/**** HairMap ****/
+  .none{
+    display:none;
+  }
+  
+  
+/**** div1 hairmap ****/
 
 
 .img-container {
@@ -167,67 +156,70 @@ flex-direction: column;
   object-fit: contain; /* respecter ratio */
 }
 
-@media screen and (max-width: 1360px) {
+/*************** div2 ***************/
 
-  .container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(8, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    height: 75vh;
-    width: 100%;
-    padding: 0;
-    border: solid black 1px;
-    }
-    
-    .left-panel { grid-area: 1 / 1 / 8 / 2; }
-    .right-panel { grid-area: 8 / 1 / 9 / 2; 
+.div2 div {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.selected {
+  border-bottom: none;
+  font-weight: bolder;
+  opacity: 1 !important;
+}
+
+/*************** div3 ***************/
+
+  .div3 {
+    grid-area: 8 / 1 / 9 / 2;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
     display: flex;
-    flex-direction: column-reverse;
-    }
+    flex-direction: row;
+  }
 
-    .right-panel div{
-      height: 50%;
-    }
+  .div3 .item-of-list{
+    height: 70px;
+    width: 150px;
+    text-align: center;
 
-    .elements{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      width: 100%;
+  
+  }
 
-      overflow-x: hidden;
+  .img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+    padding: auto;
+  }
+  
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 75vh;
+  }
+  
+  .img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* respecter ratio */
+  }
 
-    }
+  /** when hair map**/
+  .remove{
+  display: none;
+  }
 
-    .elements div{
-      margin: 0%; 
-      padding: 0px;  
-      width: 150px;
-      height: 50px;
-
-    }
-    .img-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 65vh;
-      padding: auto;
-    }
-    
-    .image-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      height: 60vh;
-    }
-    
-    .img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain; /* respecter ratio */
-    }
+  .resize{
+    grid-row-start: 1;
+    grid-row-end: 9; 
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
 
 }

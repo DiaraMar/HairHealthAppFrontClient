@@ -1,18 +1,25 @@
-/* styles.scss (ou votre fichier de style global) */
-
-.navbar {
-  height: 15vh;
+ app-navbar{
+  width: 100vw;
 }
+.site-wrapper{
+  height: 100vh;
+
+}
+
+
 
 /* Hauteur dynamique du contenu */
 .content {
-  height: 75vh;
+  height: 85vh;
   overflow-y: auto;
-
+  padding-top: 5vh;
 }
 
+
+
 .footer {
-  border: green solid 2px;
+background-color: pink !important;
+height: 7vh !important;
 }
 
 
@@ -35,4 +42,14 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #a8bbbf;
+}
+
+@media screen and (max-width: 1360px) {
+  .content {
+    height: 93vh;
+    overflow-y: auto;
+  }
+  .nav-off{
+    display: none;
+  }
 }

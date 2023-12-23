@@ -15,6 +15,7 @@ export class NavbarComponent {
   
   @ViewChild('navbarToggler') navbarToggler!: ElementRef;
   @ViewChild('navbarCollapse') navbarCollapse!: ElementRef;
+  
 
   constructor(private renderer: Renderer2) { }
 

@@ -1,194 +1,171 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+
 <div class="container">
+  <div class="div1" [ngClass]="{ 'resize': selectedMenuItem === 'HairMap' }" >
 
+    
+    <!-- ROUTINE-->
+    <div class="display-content">
 
+      <div *ngIf="selectedMenuItem === 'Routines' " class="h-full">
+        <div *ngIf="!selectedRoutine" class="content-center-center1">
+          Sélectionnez une routine pour afficher les détails.
+        </div>
 
+        <div *ngIf="selectedRoutine" class="mt-3">
 
-  <!-- *********************** LEFT PANEL  *********************** -->
+          <div class="row">
+            <form (ngSubmit)="onSubmit(routine, 'routine')" #routine="ngForm">
 
-  <div class="left-panel">
-
-    <!--routines-->
-    <div *ngIf="selectedMenuItem === 'Routines' " class="h-full">
-      <div *ngIf="!selectedRoutine" class="content-center-center1">
-        Sélectionnez une routine pour afficher les détails.
-      </div>
-
-      <div *ngIf="selectedRoutine" class="mt-3">
-
-        <div class="row">
-          <form (ngSubmit)="onSubmit(routine, 'routine')" #routine="ngForm">
-
-            <div class="mb-5">
-              <button class="btn btn-dark mt-3" type="submit">update ou save</button>
-              <button class="btn btn-dark mt-3" type="submit">share</button>
-              <button class="btn btn-dark mt-3" type="submit">delete</button>
-            </div>
-            <!-- scroll zone -->
-
-            <div class="scroll">
-              <!-- title -->
-              <div class="row mb-3">
-                <div>
-                  <input class="input-minimalist" name="title" type="text" [(ngModel)]="updatedRoutineModel.title"
-                    placeholder="Enter your title" value={{selectedRoutine.title}} required
-                    pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$" style="font-size: 3em;">
-                </div>
+              <div class="mb-5">
+                <button class="btn btn-dark mt-3" type="submit"><i class="fas fa-share"></i>
+                </button>
+                <button class="btn btn-dark mt-3" type="submit" ><i class="fas fa-comment"></i>
+                </button>
+                <button class="btn btn-dark mt-3" type="submit"><i class="fas fa-save"></i>
+                </button>
+                <button class="btn btn-dark mt-3" type="submit"><i class="fas fa-trash-alt"></i>
+                </button>
               </div>
 
-              <!-- description -->
-              <div class="row mb-5  ">
-                <div>
-                  <input class="input-minimalist " name="description" type="text"
-                    [(ngModel)]="updatedRoutineModel.description" placeholder="Enter your description"
-                    value={{selectedRoutine.description}} required pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
+              <!-- scroll zone -->
+              <div class="scroll">
+                <!-- title -->
+                <div class="row mb-3">
+                  <div>
+                    <input class="input-minimalist" name="title" type="text" [(ngModel)]="updatedRoutineModel.title"
+                      placeholder="Enter your title" value={{selectedRoutine.title}} required
+                      pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$" style="font-size: 3em;">
+                  </div>
                 </div>
-              </div>
-              <div>
-                <!-- stages -->
-                <div class="input-minimalist" *ngFor="let stage of selectedRoutine.stages; let i = index">
 
-                  <div class="mb-5">
-                    <div class="row mb-4">
-                      <div class="step-container">
-                         <input class="input-minimalist title" name="stageTitle_{{i}}" type="text"
+                <!-- description -->
+                <div class="row mb-5  ">
+                  <div>
+                    <input class="input-minimalist " name="description" type="text"
+                      [(ngModel)]="updatedRoutineModel.description" placeholder="Enter your description"
+                      value={{selectedRoutine.description}} required
+                      pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
+                  </div>
+                </div>
+                <div>
+                  <!-- stages -->
+                  <div class="input-minimalist" *ngFor="let stage of selectedRoutine.stages; let i = index">
+
+                    <div class="mb-5">
+                      <div class="row mb-4">
+                        <div class="step-container">
+                          <input class="input-minimalist title" name="stageTitle_{{i}}" type="text"
                             placeholder="Enter your description" [(ngModel)]="selectedRoutine.stages[i].title"
                             (ngModelChange)="updateStageTitle(i, $event)" required
                             pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
 
+                        </div>
                       </div>
-                    </div>
-                    <div class="row">
-                      <div>
-                        <input class="input-minimalist description-box" name="stageDescription_{{i}}" type="text"
-                          placeholder="Enter your description" [(ngModel)]="stage.description"
-                          (ngModelChange)="updateStageDescription(i, $event)"
-                          pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
+                      <div class="row">
+                        <div>
+                          <input class="input-minimalist description-box" name="stageDescription_{{i}}" type="text"
+                            placeholder="Enter your description" [(ngModel)]="stage.description"
+                            (ngModelChange)="updateStageDescription(i, $event)"
+                            pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
 
+                        </div>
                       </div>
                     </div>
+
                   </div>
-
                 </div>
               </div>
-            </div>
 
-          </form>
+            </form>
 
+          </div>
         </div>
       </div>
-    </div>
 
-    <!---Diagnostics -->
-    <div *ngIf="selectedMenuItem === 'Diagnostic' " class="mt-3  h-full">
-      <div *ngIf="!selectedDiagnostic" class="content-center-center1">
-        Sélectionnez un diagnostic pour afficher les détails.
-      </div>
-
-      <div class="mb-5">
-        <button class="btn btn-dark mt-3" type="submit">share</button>
-        <button class="btn btn-dark mt-3" type="submit">delete</button>
-      </div>
-
-      <div class="scroll">
-        <div *ngIf="selectedDiagnostic">
-          <h2 style="font-size: 3em;" class="mb-5">{{ selectedDiagnostic.title }}</h2>
-          <section class="mb-5">
-            <h4 class="mb-2">REPORT</h4>
-            <p>{{ selectedDiagnostic.report }}
-
-            </p>
-          </section>
-          <section>
-            <h4 class="mb-2">CONCLUSION</h4>
-            <q>{{selectedDiagnostic.conclusion}}</q>
-          </section>
+      <!---Diagnostics -->
+      <div *ngIf="selectedMenuItem === 'Diagnostic' " class="mt-3  h-full">
+        <div *ngIf="!selectedDiagnostic" class="content-center-center1">
+          Sélectionnez un diagnostic pour afficher les détails.
         </div>
 
-      </div>
+        <div class="mb-5">
+          <button class="btn btn-dark mt-3" type="submit"><i class="fas fa-share"></i>
+          </button>
+          <button class="btn btn-dark mt-3" type="submit"><i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
 
+        <div class="scroll">
+          <div *ngIf="selectedDiagnostic">
+            <h2 style="font-size: 3em;" class="mb-5">{{ selectedDiagnostic.title }}</h2>
+            <section class="mb-5">
+              <h4 class="mb-2">REPORT</h4>
+              <p>{{ selectedDiagnostic.report }}
 
-    </div>
-
-    <!-- HAIR MAP -->
-    <div *ngIf="selectedMenuItem === 'HairMap' " class="img-container ">
-      <div class="image-container">
-        <img [src]="imageToShow" class="img" alt="Coming soon image, advertisinf futur features" [@fadeInOut]>
-      </div>
-    </div>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- ***********************  RIGHT PANEL *********************** -->
-
-  <div class="right-panel">
-
-    <!-- MENU -->
-    <div class="menu">
-      <div (click)="selectMenuItem('Routines')" [ngClass]="{ 'selected': selectedMenuItem === 'Routines' }">Routines
-      </div>
-      <div (click)="selectMenuItem('Diagnostic')" [ngClass]="{ 'selected': selectedMenuItem === 'Diagnostic' }">
-        Diagnostic
-      </div>
-      <div (click)="selectMenuItem('HairMap')" [ngClass]="{ 'selected': selectedMenuItem === 'HairMap' }">Hair Map</div>
-    </div>
-
-
-    <!-- ELEMENTS-->
-    <div class="elements-">
-
-      <div class="elements" *ngIf="selectedMenuItem === 'Routines' ">
-        <div *ngFor="let routine of routines" (click)="selectRoutine(routine)" class="mb-3 element-container">
-          <div class="item">
-            <div> {{ routine.title }}</div>
-            <div>
-              <p>Créer le {{routine.createdOn | date: 'dd/MM/yyyy' }}</p>
-            </div>
+              </p>
+            </section>
+            <section>
+              <h4 class="mb-2">CONCLUSION</h4>
+              <q>{{selectedDiagnostic.conclusion}}</q>
+            </section>
           </div>
 
         </div>
+
+
       </div>
-
-
-      <div class="elements" *ngIf="selectedMenuItem === 'Diagnostic' ">
-        <div *ngFor="let diagnostic of diagnostics" (click)="selectDiagnostic(diagnostic)"
-          class="mb-3 element-container">
-          <div class="item">{{ diagnostic.title }} </div>
-        </div>
-      </div>
-
-      <div class="elements" *ngIf="selectedMenuItem === 'HairMap' " class="elements">
-        <div class="mb-3 element-container">
-          <div class="item"> test</div>
+      <!-- HAIR MAP -->
+      <div *ngIf="selectedMenuItem === 'HairMap' " class="img-container ">
+        <div class="image-container">
+          <img [src]="imageToShow" class="img" alt="Coming soon image, advertisinf futur features" [@fadeInOut]>
         </div>
       </div>
 
     </div>
+
+
+
+  </div>
+  <div class="div2 ">
+    
+    <div (click)="selectMenuItem('Home')" [ngClass]="{ 'selected': selectedMenuItem === 'Home' }">
+      <i class="fas fa-home text-secondary" style="color: black !important;"></i>
+    </div>
+    <div (click)="selectMenuItem('Routines')" [ngClass]="{ 'selected': selectedMenuItem === 'Routines' }">Routines
+    </div>
+    <div (click)="selectMenuItem('Diagnostic')" [ngClass]="{ 'selected': selectedMenuItem === 'Diagnostic' }">
+      Diagnostic
+    </div>
+    <div (click)="selectMenuItem('HairMap')" [ngClass]="{ 'selected': selectedMenuItem === 'HairMap' }">Hair Map</div>
   </div>
 
+  <div class="div3 scroll-y" *ngIf="selectedMenuItem === 'Routines' ">
+    <div *ngFor="let routine of routines" (click)="selectRoutine(routine)" class="mb-3 element-container">
+      <div class="item-of-list">
+        <div> {{ routine.title }}</div>
+        <div class="none">
+          <p>Créer le {{routine.createdOn | date: 'dd/MM/yyyy' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="div3 scroll-y" *ngIf="selectedMenuItem === 'Diagnostic' ">
+    <div *ngFor="let diagnostic of diagnostics" (click)="selectDiagnostic(diagnostic)" class="mb-3 element-container">
+      <div class="item-of-list">{{ diagnostic.title }} </div>
+    </div>
+  </div>
+
+  <div class="div3 scroll-y" *ngIf="selectedMenuItem === 'HairMap' " class="elements" [ngClass]="{ 'remove': selectedMenuItem === 'HairMap' }">
+    <div class="mb-3 element-container">
+      <div class="item-of-list"> test</div>
+    </div>
+  </div>
+
+
+
+
 </div>
+
