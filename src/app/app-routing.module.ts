@@ -6,23 +6,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { PageStatusComponent } from './page-status/page-status.component';
 import { ProfilComponent } from './profil/profil.component';
-import { RoutineComponent } from './routine/routine.component';
-import { DiagnosticComponent } from './diagnostic/diagnostic.component';
-import { GoalComponent } from './goal/goal.component';
-import { AdviceComponent } from './advice/advice.component';
 
-const dashboardRoutes: Routes = [
-  { path: 'routines', component: RoutineComponent }, 
-  { path: 'diagnostics', component: DiagnosticComponent },
-  { path: 'goals', component: GoalComponent }, 
-  { path: 'advices', component: AdviceComponent }, 
-];
+
+
 
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'auth', component: AuthComponent },
-  { path: 'dashboard', component: DashboardComponent, children: dashboardRoutes},
+  { path: 'dashboard', component: DashboardComponent},
   { path: 'admin-dashboard', component: AdminDashboardComponent },
   { path: 'page-status', component: PageStatusComponent },
   { path: 'profil', component: ProfilComponent },

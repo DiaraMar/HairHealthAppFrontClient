@@ -11,19 +11,14 @@
 
 .div1 {
   grid-area: 1 / 1 / 8 / 4;
-  background-color: red;
+  border: 5px solid ghostwhite;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(12, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  }
-  
-  
-  .display-content { 
-     grid-area: 1 / 1 / 13 / 2; background-color: purple; 
-    overflow-y: scroll;
-    overflow-x: hidden;}
+}
+
 
 .div2 {
   grid-area: 1 / 4 / 2 / 6;
@@ -39,7 +34,7 @@
 
 .div3 {
   grid-area: 2 / 4 / 8 / 6;
-  background-color: blue;
+  border: 5px solid ghostwhite;
   overflow-y: scroll;
   overflow-x: hidden;
   display: flex;
@@ -55,29 +50,6 @@
 .div3 {
   padding: 20px;
 }
-
-
-/*************** div2 ***************/
-
-.div2 div {
-  cursor: pointer;
-}
-
-.selected {
-  border-bottom: 2px solid black;
-  opacity: 1;
-}
-
-/*************** div3 ***************/
-
-.div3 .item-of-list{
-  border: black 1px solid;
-  width: 100%;
-  height: 150px;
-  flex: none; 
-  margin-bottom: 10px;
-}
-
 
 /*************** SCROLL ***************/
 
@@ -100,13 +72,103 @@
   background-color: #a8bbbf;
 }
 
-
-// Modal
-
+/********************************************* end of structure *********************************************/
 
 
+/*************** div1 ***************/
 
-// End modal
+.display-content {
+  grid-area: 1 / 1 / 13 / 2;
+  // background-color: purple; 
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.div1 .row div,
+.div1 .row .input-minimalist{
+  border: none;
+  text-align: center;
+}
+
+/*** todo
+ Fix padding left on title routine on responsive 
+ Resize all input verticalically;
+ modal for comments and advice
+*/
+
+.-header{
+  font-family: 'IBMPlexMono-Light', sans-serif;
+  text-transform: uppercase;
+  color: rgb(41, 28, 28);
+  font-weight: bolder;
+}
+
+.-description{
+  font-family: 'IBMPlexMono-MediumItalic', sans-serif;
+}
+
+.title-box{
+  font-family:  'IBMPlexMono-Regular', sans-serif;
+
+  text-transform: capitalize;
+  font-size: larger;
+  font-weight: 700;
+}
+.step-container input, p, q{
+  font-family:  'IBMPlexMono-Regular', sans-serif;
+}
+
+button{
+  border-radius: 0;
+}
+button:hover{
+  color: white;
+  background-color: black;
+}
+
+.div1 .item-of-list div{
+  border: black 1px solid;
+  width: 100%;
+  height: 100px;
+  flex: none;
+  margin-bottom: 10px;
+}
+
+
+
+/*************** div2 ***************/
+
+.div2 div {
+  cursor: pointer;
+}
+
+.div2 .selected {
+  border-bottom: 2px solid #50C878;
+  opacity: 1;
+  color: #50C878
+  ;
+}
+
+
+/*************** div3 ***************/
+
+.div3, .div3 *{
+  text-align: center;
+}
+.div3 .item-of-list {
+  border: black 1px solid;
+  width: 100%;
+  height: 150px;
+  flex: none;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+/********************************************* Responsive *********************************************/
+
 
 @media screen and (max-width: 1360px) {
   .container {
@@ -125,51 +187,65 @@
     grid-area: 9 / 1 / 10 / 2;
   }
 
-  .none{
-    display:none;
+  .none {
+    display: none;
   }
-  
-  
-/**** div1 hairmap ****/
 
 
-.img-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-}
+  /*************** div1 HAIRMAP ***************/
 
-.image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  height: 80vh;
-  background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
-                radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-}
 
-.img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; /* respecter ratio */
-}
+  .img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+  }
 
-/*************** div2 ***************/
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 80vh;
+    background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+      radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+  }
 
-.div2 div {
-  cursor: pointer;
-  opacity: 0.5;
-}
+  .img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* respecter ratio */
+  }
 
-.selected {
-  border-bottom: none;
-  font-weight: bolder;
-  opacity: 1 !important;
-}
+  /** when hair map**/
+  .remove {
+    display: none;
+  }
 
-/*************** div3 ***************/
+  .resize {
+    grid-row-start: 1;
+    grid-row-end: 9;
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
+
+
+  /*************** div2 ***************/
+
+  .div2 div {
+    cursor: pointer;
+    opacity: 0.5;
+  }
+
+  .div2 .selected {
+    border-bottom: none;
+    font-weight: bolder;
+    opacity: 1 !important;
+  }
+
+  /*************** div3 ***************/
 
   .div3 {
     grid-area: 8 / 1 / 9 / 2;
@@ -180,12 +256,10 @@
     flex-direction: row;
   }
 
-  .div3 .item-of-list{
+  .div3 .item-of-list {
     height: 70px;
     width: 150px;
     text-align: center;
-
-  
   }
 
   .img-container {
@@ -195,7 +269,7 @@
     height: 75vh;
     padding: auto;
   }
-  
+
   .image-container {
     display: flex;
     justify-content: center;
@@ -203,23 +277,14 @@
     position: relative;
     height: 75vh;
   }
-  
+
   .img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain; /* respecter ratio */
+    object-fit: contain;
+    /* respecter ratio */
   }
 
-  /** when hair map**/
-  .remove{
-  display: none;
-  }
 
-  .resize{
-    grid-row-start: 1;
-    grid-row-end: 9; 
-    grid-column-start: 1;
-    grid-column-end: 4;
-  }
 
 }

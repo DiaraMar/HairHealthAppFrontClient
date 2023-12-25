@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'IBMPlexMono-SemiBold';
+    src: url('../src/assets/fonts/IBM_Plex_Mono/IBMPlexMono-SemiBold.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'IBMPlexMono-Light';
+    src: url('../src/assets/fonts/IBM_Plex_Mono/IBMPlexMono-Light.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'IBMPlexMono-MediumItalic';
+    src: url('../src/assets/fonts/IBM_Plex_Mono/IBMPlexMono-MediumItalic.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'IBMPlexMono-Regular';
+    src: url('../src/assets/fonts/IBM_Plex_Mono/IBMPlexMono-Regular.ttf') format('truetype');
+  }

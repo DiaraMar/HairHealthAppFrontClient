@@ -23,29 +23,28 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
 
-  selectedMenuItem : string = "Routines";
-  routines : any [] = [];
-  diagnostics : any [] = [];
-  stages : any [] = [];
-  selectedRoutine: any;
+  selectedMenuItem: string = "Routines";
+  routines: any[] = [];
+  diagnostics: any[] = [];
+  stages: any[] = [];
   updatedRoutineModel = {
-    id:'',
-    title : '',
-    description:'',
-    createdBy:'',
-    createdOn:''
+    id: '',
+    title: '',
+    description: '',
+
   }
-  updatedStagesModel: any[]=[];
+  updatedStagesModel: any[] = [];
+  selectedRoutine: any;
   selectedDiagnostic: any;
   currentImage = 0;
   imageToShow = '../../assets/Maquette application (512 x 768 px) (1).png';
   index = 0;
 
 
-  
 
 
-  constructor(private routineService : RoutineService, private router : Router){}
+
+  constructor(private routineService: RoutineService, private router: Router) { }
 
   ngOnInit() {
     this.initRoutines();
@@ -53,42 +52,42 @@ export class DashboardComponent {
   }
 
 
-  ngOnChanges(changes: any) {  }
+  ngOnChanges(changes: any) { }
 
-  initRoutines(){
+  initRoutines() {
     this.routineService.getRoutines().subscribe(
-      (response : any) => {
+      (response: any) => {
         if (response) {
           this.routines = response;
           this.stages = response.stages;
-          console.log(this.routines);
+          this.selectedRoutine = this.routines[0];
         }
       },
       (error) => {
         console.log("err");
       }
-    ); 
-}
+    );
+  }
 
-initDiagnostics(){
-  this.routineService.getDiagnostics().subscribe(
-    (response : any) => {
-      if (response) {
-        this.diagnostics = response;
+  initDiagnostics() {
+    this.routineService.getDiagnostics().subscribe(
+      (response: any) => {
+        if (response) {
+          this.diagnostics = response;
+        }
+      },
+      (error) => {
+        console.log("err");
       }
-    },
-    (error) => {
-      console.log("err");
-    }
-  ); 
-}
+    );
+  }
 
-  selectMenuItem(selected : 'Home'| 'Routines' | 'Diagnostic' | 'Goals' | 'HairMap' ){
+  selectMenuItem(selected: 'Home' | 'Routines' | 'Diagnostic' | 'Goals' | 'HairMap') {
 
     if (selected === 'Home') {
       this.selectedMenuItem = selected;
       this.router.navigateByUrl('/home');
-        }
+    }
     if (selected === 'Routines') {
       this.selectedMenuItem = selected;
     }
@@ -100,80 +99,65 @@ initDiagnostics(){
       this.selectedMenuItem = selected;
       setInterval(() => {
         this.toggleImage();
-      }, 3000); // Change every 3 seconds, replace this with your logic
-   
+      }, 4000); // Change every 3 seconds, replace this with your logic
+
     }
-    
+
   }
 
-selectRoutine(selected :any ){
-  console.log("select routine");
-  console.log(selected);
-  this.selectedRoutine = selected;
-  this.updatedRoutineModel.id = selected.id;
-  this.updatedRoutineModel.title = selected.title;
-  this.updatedRoutineModel.description = selected.description;
-  this.updatedRoutineModel.createdOn = selected.createdOn;
-  this.updatedRoutineModel.createdBy = selected.createdBy;
+  selectRoutine(selected: any) {
 
-  this.updatedStagesModel = selected.stages;
-  console.log("updated routine");
-  console.log(this.updatedRoutineModel);
-  console.log("updated stages");
-  console.log(this.updatedStagesModel);
-}
-
-selectDiagnostic(selected :any ){
-  this.selectedDiagnostic = selected;
-
-}
+    this.selectedRoutine = selected;
+    console.log(this.selectedRoutine);
+    this.updatedRoutineModel.id = selected.id;
+    this.updatedRoutineModel.title = selected.title;
+    this.updatedRoutineModel.description = selected.description;
 
 
-onSubmit(ngForm : NgForm, action : 'routine'){
-  console.log("retrieve", ngForm.value);
-  console.log("updated routine");
-  console.log(this.updatedRoutineModel);
-  console.log("updated stages");
-  console.log(this.updatedStagesModel);
-  console.log("hereeeeeeeeeeee");
+    this.updatedStagesModel = selected.stages;
 
-console.log(  this.selectedRoutine.stages[0]  )
-  if(ngForm.valid){
-
-    }
-
-}
-
-updateStageTitle(stageIndex: number, newTitle: string) {
-  this.selectedRoutine.stages[stageIndex].title = newTitle;
-  // Mettre à jour updatedStagesModel si nécessaire
-}
-
-updateStageDescription(stageIndex: number, newDescription: string) {
-  this.selectedRoutine.stages[stageIndex].description = newDescription;
-  // Mettre à jour updatedStagesModel si nécessaire
-}
-
-saveRoutine() {
-  // Utilise le service pour sauvegarder les modifications
-  this.routineService.updateRoutine(this.updatedRoutineModel, this.updatedStagesModel).subscribe(
-    (response) => {
-      // Gérer la réponse en cas de succès
-    },
-    (error) => {
-      // Gérer les erreurs éventuelles
-    }
-  );
-}
-
-
-toggleImage() {
-  if (this.imageToShow === '../../assets/Maquette application (512 x 768 px) (1).png') {
-    this.imageToShow = '../../assets/Maquette application (512 x 768 px).png';
-  } else {
-    this.imageToShow = '../../assets/Maquette application (512 x 768 px) (1).png';
   }
-}
+
+  selectDiagnostic(selected: any) {
+    this.selectedDiagnostic = selected;
+
+  }
+
+
+  onSubmit(ngForm: NgForm, action: 'routine') {
+
+  }
+
+  updateStageTitle(stageIndex: number, newTitle: string) {
+    this.selectedRoutine.stages[stageIndex].title = newTitle;
+    // Mettre à jour updatedStagesModel si nécessaire
+  }
+
+  updateStageDescription(stageIndex: number, newDescription: string) {
+    this.selectedRoutine.stages[stageIndex].description = newDescription;
+    // Mettre à jour updatedStagesModel si nécessaire
+  }
+
+  saveRoutine() {
+    // Utilise le service pour sauvegarder les modifications
+    this.routineService.updateRoutine(this.updatedRoutineModel, this.updatedStagesModel).subscribe(
+      (response) => {
+        // Gérer la réponse en cas de succès
+      },
+      (error) => {
+        // Gérer les erreurs éventuelles
+      }
+    );
+  }
+
+
+  toggleImage() {
+    if (this.imageToShow === '../../assets/Maquette application (512 x 768 px) (1).png') {
+      this.imageToShow = '../../assets/Maquette application (512 x 768 px).png';
+    } else {
+      this.imageToShow = '../../assets/Maquette application (512 x 768 px) (1).png';
+    }
+  }
 
 
 

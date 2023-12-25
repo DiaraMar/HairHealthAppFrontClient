@@ -14,11 +14,8 @@ import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { HttpClientModule } from '@angular/common/http';
-import { RoutineComponent } from './routine/routine.component';
-import { DiagnosticComponent } from './diagnostic/diagnostic.component';
-import { GoalComponent } from './goal/goal.component';
-import { AdviceComponent } from './advice/advice.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommentComponent } from './comment/comment.component';
 
 
 
@@ -33,10 +30,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     ProfilComponent,
     FooterComponent,
-    RoutineComponent,
-    DiagnosticComponent,
-    GoalComponent,
-    AdviceComponent
+    CommentComponent,
+
   ],
   imports: [
     BrowserModule,
