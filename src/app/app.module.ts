@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common'; // Import CommonModule
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommentComponent } from './comment/comment.component';
+import { AdviceComponent } from './advice/advice.component';
 
 
 
@@ -31,6 +32,7 @@ import { CommentComponent } from './comment/comment.component';
     ProfilComponent,
     FooterComponent,
     CommentComponent,
+    AdviceComponent,
 
   ],
   imports: [

@@ -55,17 +55,36 @@
                         </div>
                       </div>
                     </div>
-
-                    <div class="modal-footer">
-                    </div>
                   </div>
                 </div>
               </dialog>
 
 
               <dialog #advice>
-                <p>hello</p>
+
+
+                <div class="modal-dialog ">
+    
+                  <div class="modal-content">
+                    <div class="modal-body ">
+                      <button type="button" class="btn" data-dismiss="modal"
+                      style="justify-content: right; align-items: right;" (click)="advice.close()">Fermer</button>                      
+                      <h4 class="mt-4 mb-3">Un problème dans votre routine</h4>
+                      <p > Nos cosmétologues investiguent votre routine capillaire, les formulations des produits que vous utilisaient, afin de trouver une réponse à vos problèmes</p>
+                      <form>
+                        <input type="text" name="topics" class="topic form-control" placeholder="Topics"/>
+                        <input type="text" name="issueDescription" class="issueDescription form-control" placeholder="Décrivez votre problème" style="height: 250px;"/>
+                        <input class="btn command" type="submit" value="Enquêter sur ma routine" />
+                      </form>
+                    </div>
+                  </div>
+                </div>  
+              
+          
+          
               </dialog>
+              
+          
 
               <!-- scroll zone -->
               <div class="scroll">

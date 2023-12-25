@@ -134,6 +134,39 @@ button:hover{
   margin-bottom: 10px;
 }
 
+/** modal to move in device component **/
+
+/*Modal*/
+
+.modal-body{
+  overflow-y: scroll;
+
+  height: 500px;
+}
+
+form {
+  margin: 0;
+  padding: 0;
+  width: 78vw;
+}
+
+.issueDescription{
+  word-wrap: break-word !important; 
+}
+.command {
+  border-radius: 20px;
+  background: none;
+  border: 1px solid #FAB87F;
+  color: #FAB87F;
+  font-weight: bold;
+  transition: all .5s;
+  margin-top: 1em;
+}
+.command:hover {
+  background: #FAB87F;
+  color: #fff;
+}
+
 
 
 /*************** div2 ***************/
@@ -143,9 +176,9 @@ button:hover{
 }
 
 .div2 .selected {
-  border-bottom: 2px solid #50C878;
+  border-bottom: 2px solid #FAB87F;
   opacity: 1;
-  color: #50C878
+  color: #FAB87F
   ;
 }
 
