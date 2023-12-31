@@ -194,6 +194,10 @@ form {
   height: 150px;
   flex: none;
   margin-bottom: 10px;
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -292,7 +296,10 @@ form {
   .div3 .item-of-list {
     height: 70px;
     width: 150px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .img-container {

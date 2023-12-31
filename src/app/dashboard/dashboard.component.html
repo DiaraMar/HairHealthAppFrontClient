@@ -69,8 +69,8 @@
                     <div class="modal-body ">
                       <button type="button" class="btn" data-dismiss="modal"
                       style="justify-content: right; align-items: right;" (click)="advice.close()">Fermer</button>                      
-                      <h4 class="mt-4 mb-3">Un problème dans votre routine</h4>
-                      <p > Nos cosmétologues investiguent votre routine capillaire, les formulations des produits que vous utilisaient, afin de trouver une réponse à vos problèmes</p>
+                      <h4 class="mt-4 mb-3">Un problème dans votre routine ?</h4>
+                      <p > Nos cosmétologues décortique votre routine capillaire, les formulations des produits que vous utilisez, afin de trouver une réponse à vos problèmes</p>
                       <form>
                         <input type="text" name="topics" class="topic form-control" placeholder="Topics"/>
                         <input type="text" name="issueDescription" class="issueDescription form-control" placeholder="Décrivez votre problème" style="height: 250px;"/>
@@ -79,9 +79,6 @@
                     </div>
                   </div>
                 </div>  
-              
-          
-          
               </dialog>
               
           
@@ -91,10 +88,11 @@
                 <!-- title -->
                 <div class="row mb-3">
                   <div>
-                    <input class="input-minimalist -header" name="title" type="text"
+                    <input class="input-minimalist -header " name="title" type="text"
                       [(ngModel)]="updatedRoutineModel.title" placeholder="Enter your title"
-                      value={{selectedRoutine.title}} required pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$"
-                      style="font-size: 2.5em;">
+                      value={{updatedRoutineModel.title}} required pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$"
+                      style="font-size: 1.5em;"
+                      (ngModelChange)="updatedRoutineModel.title" >
                   </div>
                 </div>
 
@@ -103,19 +101,20 @@
                   <div>
                     <input class="input-minimalist -description " name="description" type="text"
                       [(ngModel)]="updatedRoutineModel.description" placeholder="Enter your description"
-                      value={{selectedRoutine.description}} required
-                      pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
+                      value={{updatedRoutineModel.description}} required
+                      pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$"
+                      (ngModelChange)="updatedRoutineModel.description" >
                   </div>
                 </div>
                 <div>
                   <!-- stages -->
-                  <div class="input-minimalist" *ngFor="let stage of selectedRoutine.stages; let i = index">
+                  <div class="input-minimalist" *ngFor="let stage of updatedRoutineModel.stages; let i = index">
 
                     <div class="mb-5">
                       <div class="row mb-4">
                         <div class="step-container">
                           <input class="input-minimalist title-box" name="stageTitle_{{i}}" type="text"
-                            placeholder="Enter your description" [(ngModel)]="selectedRoutine.stages[i].title"
+                            placeholder="Enter your description" [(ngModel)]="stage.title"
                             (ngModelChange)="updateStageTitle(i, $event)" required
                             pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
 

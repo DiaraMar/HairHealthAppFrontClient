@@ -32,7 +32,7 @@ export class RoutineService {
     return this.http.get(authenticateUrl,{headers});
   }
 
-  updateRoutine(routine : any, stage: any){
+  updateRoutine(routine : any){
     const authenticateUrl = `${this.baseUrl}/routines`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ export class RoutineService {
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
 
     });
-    return this.http.get(authenticateUrl,{headers});
+    return this.http.patch(authenticateUrl,routine, {headers});
   }
 
 

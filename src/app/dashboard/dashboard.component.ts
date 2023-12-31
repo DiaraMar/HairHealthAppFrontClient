@@ -26,19 +26,17 @@ export class DashboardComponent {
   selectedMenuItem: string = "Routines";
   routines: any[] = [];
   diagnostics: any[] = [];
-  stages: any[] = [];
+  selectedRoutine: any;
+  selectedDiagnostic: any;
   updatedRoutineModel = {
     id: '',
     title: '',
     description: '',
-
+    stages :[] as any[]
   }
-  updatedStagesModel: any[] = [];
-  selectedRoutine: any;
-  selectedDiagnostic: any;
+  index = 0;
   currentImage = 0;
   imageToShow = '../../assets/Maquette application (512 x 768 px) (1).png';
-  index = 0;
 
 
 
@@ -59,7 +57,6 @@ export class DashboardComponent {
       (response: any) => {
         if (response) {
           this.routines = response;
-          this.stages = response.stages;
           this.selectedRoutine = this.routines[0];
         }
       },
@@ -106,15 +103,16 @@ export class DashboardComponent {
   }
 
   selectRoutine(selected: any) {
+    console.log("start select routine");
 
     this.selectedRoutine = selected;
     console.log(this.selectedRoutine);
     this.updatedRoutineModel.id = selected.id;
     this.updatedRoutineModel.title = selected.title;
     this.updatedRoutineModel.description = selected.description;
+    this.updatedRoutineModel.stages = JSON.parse(JSON.stringify(selected.stages));
+   
 
-
-    this.updatedStagesModel = selected.stages;
 
   }
 
@@ -125,27 +123,43 @@ export class DashboardComponent {
 
 
   onSubmit(ngForm: NgForm, action: 'routine') {
+    const isTitleChanged = this.selectedRoutine.title !== this.updatedRoutineModel.title;
+    const isDescriptionChanged = this.selectedRoutine.description !== this.updatedRoutineModel.description;
+  
+    const selectedStagesJSON = JSON.stringify(this.selectedRoutine.stages);
+    const updatedStagesJSON = JSON.stringify(this.updatedRoutineModel.stages);
+    const areStagesChanged = selectedStagesJSON !== updatedStagesJSON;
+  
+    if (isTitleChanged || isDescriptionChanged || areStagesChanged) {
+      console.log("Changements détectés");
+      this.selectedRoutine.title=this.updatedRoutineModel.title;
+      this.selectedRoutine.description=JSON.stringify(this.updatedRoutineModel.description);
+      this.selectedRoutine.stages=this.updatedRoutineModel.stages;
 
+      this.saveRoutine(this.selectedRoutine);
+
+    } else {
+      console.log("Aucun changement détecté");
+    }
   }
 
   updateStageTitle(stageIndex: number, newTitle: string) {
-    this.selectedRoutine.stages[stageIndex].title = newTitle;
-    // Mettre à jour updatedStagesModel si nécessaire
+    this.updatedRoutineModel.stages[stageIndex].title = newTitle;
   }
 
   updateStageDescription(stageIndex: number, newDescription: string) {
-    this.selectedRoutine.stages[stageIndex].description = newDescription;
-    // Mettre à jour updatedStagesModel si nécessaire
+    this.updatedRoutineModel.stages[stageIndex].description = newDescription;
   }
 
-  saveRoutine() {
-    // Utilise le service pour sauvegarder les modifications
-    this.routineService.updateRoutine(this.updatedRoutineModel, this.updatedStagesModel).subscribe(
-      (response) => {
-        // Gérer la réponse en cas de succès
+  saveRoutine(routine : any) {
+    this.routineService.updateRoutine(this.selectedRoutine).subscribe(
+      (response : any) => {
+        if (response) {
+          console.log(response)
+        }
       },
       (error) => {
-        // Gérer les erreurs éventuelles
+        console.log("err");
       }
     );
   }
