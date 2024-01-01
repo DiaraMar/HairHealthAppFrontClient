@@ -1,0 +1,47 @@
+<form (ngSubmit)="onSubmit(generalAccount, 'generalAccount')" #generalAccount="ngForm">
+    <div class="row gx-3">
+        <div class="col-md-12 mb-2">
+            <input class="form-control mb-2" name="firstname" type="text"
+                [(ngModel)]="profilFormModel.firstname" placeholder="Enter your first name"
+                value={{profil.firstname}} required
+                pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
+        </div>
+        <div class="col-md-12 mb-2">
+            <input class="form-control mb-2" name="lastname" type="text"
+                [(ngModel)]="profilFormModel.lastname" placeholder="Enter your last name"
+                value={{profil.lastname}} required
+                pattern="^[a-zA-Z]+([a-zA-Z-]{0,1}[a-zA-Z]+){1,19}$">
+        </div>
+    </div>
+    <div class="row gx-3 mb-2">
+        <div class="col-md-12 mb-2">
+            <input class="form-control mb-2" name="email" type="email"
+                [(ngModel)]="profilFormModel.email" name="email" placeholder="Email"
+                value={{profil.email}} required
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+        </div>
+        <div class="col-md-12 mb-2">
+            <input class="form-control mb-2" name="phoneNumber" type="tel"
+                [(ngModel)]="profilFormModel.phoneNumber" placeholder="Enter your phone number"
+                value={{profil.phoneNumber}} pattern="^\+\d{1,4}\s?\d{1,14}$">
+        </div>
+    </div>
+    <div class="row gx-3 mb-3">
+        <div class="col-md-4 mb-3">
+            <input mdbCheckbox class="form-check-input me-3" type="checkbox" [(ngModel)]="settingsFormModel.sms" id="sms" name="sms" />
+            <label class="form-check-label" for="sms">{{'Receive SMS'}}</label>
+          </div>
+          <div class="col-md-4 mb-3">
+            <input mdbCheckbox class="form-check-input mb-3 me-3" type="checkbox" [(ngModel)]="settingsFormModel.newsletter" id="newsletter" name="newsletter" />
+            <label class="form-check-label" for="newsletter">{{'Subscribe Newsletter'}}</label>
+          </div>                              
+    </div>
+    <div class="row gx-3 mb-3">
+        <div class="col-md-3">
+            <button class="btn btn-dark btn-block" type="button">{{ 'Sauvegarder' }}</button>
+            <button class="btn btn-dark btn-block" type="button">{{ 'Desactiver' }}</button>
+        </div>
+    </div>
+
+
+</form>  

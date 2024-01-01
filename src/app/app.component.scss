@@ -5,7 +5,10 @@
   height: 100vh;
 
 }
-
+.admin{
+  margin: 0 !important;
+  padding: 0 !important;
+}
 
 
 /* Hauteur dynamique du contenu */
@@ -22,7 +25,14 @@ background-color: pink !important;
 height: 7vh !important;
 }
 
-
+/* Admin Mode */
+.hide-navbar {
+  display: none;
+}
+.remove-margin-padding {
+  margin: 0!important;
+  padding: 0 !important;
+}
 
 /*************  Scrollbar  ***************/
 ::-webkit-scrollbar {
@@ -52,4 +62,9 @@ height: 7vh !important;
   .nav-off{
     display: none;
   }
+  .admin{
+    margin: 0px 2px !important;
+    padding: 0 !important;
+  }
+  
 }

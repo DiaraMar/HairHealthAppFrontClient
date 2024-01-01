@@ -1,11 +1,13 @@
-<div class="site-wrapper">
-    <div class="site-wrapper-inner">
-        <div class="container-fluid">
-            <app-navbar [ngClass]="{ 'nav-off': currentUrl === '/dashboard' }" ></app-navbar>
-            <div class="content">
+<div class="site-wrapper"     [ngClass]="{'admin': currentUrl.includes('/pistache')}" >
+    <div class="site-wrapper-inner"     [ngClass]="{'admin': currentUrl.includes('/pistache')}">
+        <div class="container-fluid"     [ngClass]="{'admin': currentUrl.includes('/pistache')}">
+            <app-navbar [ngClass]="{ 'nav-off': currentUrl === '/dashboard' }" *ngIf="!currentUrl.includes('/pistache')" ></app-navbar>
+            <div class="content"     [ngClass]="{'admin': currentUrl.includes('/pistache')}">
                 <router-outlet></router-outlet>
             </div>
         </div>
     </div>
 </div>
-<app-footer class="footer"></app-footer>
+<app-footer class="footer" *ngIf="!currentUrl.includes('/pistache')"></app-footer >
+
+

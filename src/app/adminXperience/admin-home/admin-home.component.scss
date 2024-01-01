@@ -1,0 +1,32 @@
+
+.on-mobile{
+    display: none;  
+}
+
+.modal, .modal-dialog{
+    margin:0;
+}
+.modal-content{
+    height: 90vh;
+    width: 80vw;
+    margin-top : 5vh;
+    margin-left : 10vw;
+}
+
+
+@media screen and (max-width: 1290px) {
+.off-mobile{
+    display: none;
+
+
+}
+.on-mobile{
+    display: inherit;
+}
+.modal-content{
+    width: inherit;
+    margin : 5vh 5vw;
+    padding: inherit;
+}
+
+}

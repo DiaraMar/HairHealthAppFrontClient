@@ -32,6 +32,17 @@ export class RoutineService {
     return this.http.get(authenticateUrl,{headers});
   }
 
+  createRoutine(routine : any){
+    const authenticateUrl = `${this.baseUrl}/routines`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+
+    });
+    return this.http.post(authenticateUrl,routine, {headers});
+  }
+
   updateRoutine(routine : any){
     const authenticateUrl = `${this.baseUrl}/routines`;
     const headers = new HttpHeaders({
@@ -41,6 +52,17 @@ export class RoutineService {
 
     });
     return this.http.patch(authenticateUrl,routine, {headers});
+  }
+
+  deleteRoutine(id: number){
+    const authenticateUrl = `${this.baseUrl}/routines/delete`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+
+    });
+    return this.http.post(authenticateUrl,id, {headers});
   }
 
 

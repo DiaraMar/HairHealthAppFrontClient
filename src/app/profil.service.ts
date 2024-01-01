@@ -22,6 +22,17 @@ export class ProfilService {
     return this.http.get(authenticateUrl,{headers});
   }
 
+  getuserProfilBy(username: string){
+    const authenticateUrl = `${this.baseUrl}/me/profil`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+
+    });
+    return this.http.get(authenticateUrl,{headers});
+  }
+
   updateUserProfil(profil:any){
     const authenticateUrl = `${this.baseUrl}/me/profil`;
 
