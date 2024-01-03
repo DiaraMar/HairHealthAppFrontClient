@@ -120,65 +120,38 @@
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">Fullname</th>
-                            <th scope="col" class="off-mobile">Last Connection</th>
-                            <th scope="col" class="off-mobile">ProductBought</th>
+                            <th scope="col" class="off-mobile">Role</th>
+                            <th scope="col" class="off-mobile">Email</th>
                             <th scope="col" class="off-mobile">Influence</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr *ngFor="let user  of users" (click)="selectUser(user)">
               
                             <td>
                                 <img alt="..."
                                     src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
                                     class="avatar avatar-sm rounded-circle me-2">
                                 <a class="text-heading font-semibold" href="#">
-                                    Robert Fox
+                                    {{user.firstname}} {{user.lastname}}
                                 </a>
                             </td>
-
                             <td class="off-mobile">
-                                <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png"
-                                    class="avatar avatar-xs rounded-circle me-2">
                                 <a class="text-heading font-semibold" href="#">
-                                    Dribbble
+                                    {{user.role}}
                                 </a>
                             </td>
                             <td class="off-mobile">
-                                $3.500
+                                {{user.email}}
                             </td>
                             <td class="off-mobile">
                                 <span class="badge badge-lg badge-dot">
-                                    <i class="bg-success"></i>Scheduled
+                                    <i class="bg-success"></i>coming soon
                                 </span>
                             </td>
                             <td class="text-end">
                                 <a data-bs-toggle="modal" data-bs-target="#editProfil" class="btn btn-sm btn-neutral off-mobile">Edit</a>
-                                <div class="modal fade" id="editProfil">
-                                    <div class="modal-dialog modal-dialog-center">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h5 class="modal-title">Modal-Title</h5>
-                                          <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row ">
-                                                <div class="col-12">
-                                                    <div class="card shadow border-0">
-                                                        <div class="card-body">
-                                                            <app-card-profil [username]="this.selectedUser"></app-card-profil>                                      
-                                                        </div>
-                                                 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                
-                                      </div>
-                                    </div>
-                                </div>
                                 <a class="btn btn-sm btn-neutral off-mobile">Message</a>
                                 <a class="btn btn-sm btn-neutral off-mobile">Ban</a>
                                 <a class="btn btn-sm btn-neutral off-mobile">Resend password</a>
@@ -213,3 +186,31 @@
         </div>
     </div>
 </main>
+
+
+
+<!-- Modals -->
+<div class="modal fade" id="editProfil">
+    <div class="modal-dialog modal-dialog-center">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal-Title</h5>
+          <button class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row ">
+                <div class="col-12">
+                    <div class="card shadow border-0">
+                        <div class="card-body"  *ngIf="selectedUser">
+                            <app-card-profil [selectedUser]="selectedUser"></app-card-profil>                                      
+                        </div>
+                 
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+      </div>
+    </div>
+</div>

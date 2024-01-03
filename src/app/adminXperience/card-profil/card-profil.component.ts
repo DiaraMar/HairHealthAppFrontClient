@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AdminService } from 'src/app/admin.service';
 import { ProfilService } from 'src/app/profil.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ProfilService } from 'src/app/profil.service';
 })
 export class CardProfilComponent {
 
-  @Input() username: string = '';
+  @Input() selectedUser : any;
 
   profil = {
     firstname : '',
@@ -34,14 +35,15 @@ export class CardProfilComponent {
     sms:null,
     newsletter:null
   }
-  constructor(private profilService : ProfilService){}
+  constructor(private adminService : AdminService){}
 
   ngOnInit() {
+    console.log("in card", this.selectedUser)
     this.initUserProfil();
     this.initSettings();
   }
 
-  onSubmit(ngForm : NgForm, action : 'generalAccount'|'credentials'){
+  onSubmit(ngForm : NgForm, action : 'generalAccount'){
     if(ngForm.valid){
       if(action=="generalAccount"){
         if(this.profil != this.profilFormModel){
@@ -57,33 +59,20 @@ export class CardProfilComponent {
 
 
   initUserProfil(){
-    this.profilService.getuserProfilBy(this.username).subscribe(
-      (response : any) => {
-        if (response) {
-          this.profil.firstname = response.firstname;
-          this.profil.lastname = response.lastname;
-          this.profil.email = response.email;
-          this.profil.phoneNumber = response.phoneNumber;
+    
+          this.profil.firstname = this.selectedUser.firstname;
+          this.profil.lastname = this.selectedUser.lastname;
+          this.profil.email = this.selectedUser.email;
+          this.profil.phoneNumber = this.selectedUser.phoneNumber;
           this.populateUserForm();
-        }
-      },
-      (error) => {
-        console.log("err");
-      }
-    ); 
+
   }
 
   initSettings(){
-    this.profilService.getSettings().subscribe(
-      (response : any)=>{
-        this.settings.sms=response.sms;
-        this.settings.newsletter=response.newsletter;
-        this.populateSettingsForm();
-      },
-      (error)=>{
 
-      }
-    );
+        this.settings.sms=this.selectedUser.sms;
+        this.settings.newsletter=this.selectedUser.newsletter;
+        this.populateSettingsForm();
   }
 
   populateUserForm(){
@@ -99,7 +88,7 @@ export class CardProfilComponent {
   }
 
   updateProfil(){
-    this.profilService.updateUserProfil(this.profilFormModel).subscribe(
+    this.adminService.updateUserProfil(this.profilFormModel).subscribe(
       (response:any)=>{
         this.profil.firstname = response.firstname;
         this.profil.lastname = response.lastname;
@@ -107,6 +96,8 @@ export class CardProfilComponent {
         this.profil.phoneNumber = response.phoneNumber;
 
         this.populateUserForm();
+        window.location.reload();
+
       },
       (error)=>{
 
@@ -116,12 +107,14 @@ export class CardProfilComponent {
   }
 
   updateSettings(){
-    this.profilService.updateSettings(this.settingsFormModel).subscribe(
+    this.adminService.updateSettings(this.settingsFormModel).subscribe(
       (response:any)=>{
         this.settings.newsletter = response.newsletter;
         this.settings.sms = response.sms;
 
         this.populateSettingsForm();
+        window.location.reload();
+
       },
       (error)=>{
       }
